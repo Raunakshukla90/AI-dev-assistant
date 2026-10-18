@@ -4174,9 +4174,15 @@ cursor:pointer;
           handler: doAnalyze,
         },
         {
-          key: '/',
-          handler: () => editor.focus(),
-        },
+  key: '/',
+  when: (event) =>
+    !event.repeat &&
+    !event.ctrlKey &&
+    !event.metaKey &&
+    !event.altKey &&
+    !window.QyverixSecurity.isEditableShortcutTarget(event.target),
+  handler: () => editor.focus(),
+},
         {
           key: 'Escape',
           allowInEditable: true,
